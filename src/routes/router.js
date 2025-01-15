@@ -75,7 +75,6 @@ import PayInfoContainer from '../pages/shop/md/MdPayInfo/PayInfoContainer';
 import NotFoundContainer from '../pages/notFound/NotFoundContainer';
 import FAQContainer from '../pages/FAQ/FAQContainer';
 import CommentsContainer from '../pages/community/editComment/CommentsContainer';
-import LessonDetails from '../pages/showu/lesson/LessonMain/lessonDetails/LessonDetails';
 import MusicalContainer2 from '../pages/vod/musical/MusicalContainer2';
 import MovieContainer from '../pages/vod/movie/MovieContainer';
 import MusicContainer from '../pages/vod/music/MusicContainer'
@@ -97,15 +96,12 @@ import OpenDetail from '../pages/reservation/ticket/openDetail/OpenDetail';
 import SpaceRental from '../pages/reservation/space/spaceRental/SpaceRental';
 import RentalDetail from '../pages/reservation/space/rentaldetail/RentalDetail';
 import RentalSelection from '../pages/reservation/space/rentalSelection/RentalSelection';
-import LessonMake from '../pages/showu/lesson/LessonMain/LessonMake/_component/LessonMake';
-import LessonMain from '../pages/showu/lesson/LessonMain/LessonMain';
-import TeamDetails from '../pages/showu/team/teamDetails/_component/TeamDetails';
-import TeamMainPage from '../pages/showu/team/teamMain/TeamMainPage'
-import TeamMaking from '../pages/showu/team/teamMaking/TeamMaking';
 import Detail from '../pages/reservation/payment/Detail';
 import Failed from '../pages/reservation/payment/Failed';
 import Success from '../pages/reservation/payment/Success';
 import AdminUpgradContainer from '../pages/admin/AdminUpgradContainer';
+import LessonContainer from '../pages/showu/lesson/LessonContainer';
+import TeamContainer from '../pages/showu/team/TeamContainer';
 
 const router = createBrowserRouter([
   {
@@ -388,38 +384,26 @@ const router = createBrowserRouter([
         path: "/shop/auction/state",
         element: <StateContainer />, // 경매 구매 상태
       },
-
       {
         path: "/showu",
-        element: <ShowuContainer />,
+        element: <ShowuContainer />, //showu 메인
       },
       {
         path: "/showu/lesson",
-        element: <LessonMain />,
+        element: <LessonContainer />, //lesson 메인
       },
-
-      {
-        path: "/showu/lesson/details/:id",
-        element: <LessonDetails />,
-      },
-      {
-        path: "/showu/lesson/lessonMake",
-        element: <LessonMake />,
-      },
+      // {
+      //   path: "/showu/lesson/detail/:id",
+      //   element: <LessonDetails />, //lesson 상세 페이지
+      // },
       {
         path: "/showu/team",
-        element: <TeamMainPage />,
+        element: <TeamContainer />, //team 메인
       },
-      {
-        path: "/showu/team/teamDetails",
-        element: <TeamDetails />,
-      },
-      {
-        path: "/showu/team/teamMake",
-        element: <TeamMaking />,
-      },
-   
-
+      // {
+      //   path: "/showu/team/detail/:id",
+      //   element: <TeamDetails />, //team 상세 페이지
+      // },
       {
         path: "/vod",
         element: <VodContainer />,
