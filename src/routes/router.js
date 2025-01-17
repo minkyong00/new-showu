@@ -102,6 +102,7 @@ import Success from '../pages/reservation/payment/Success';
 import AdminUpgradContainer from '../pages/admin/AdminUpgradContainer';
 import LessonContainer from '../pages/showu/lesson/LessonContainer';
 import TeamContainer from '../pages/showu/team/TeamContainer';
+import TeamDetailContainer from '../pages/showu/team/teamDetail/TeamDetailContainer';
 
 const router = createBrowserRouter([
   {
@@ -392,10 +393,10 @@ const router = createBrowserRouter([
         path: "/showu/lesson",
         element: <LessonContainer />, //lesson 메인
       },
-      // {
-      //   path: "/showu/lesson/detail/:id",
-      //   element: <LessonDetails />, //lesson 상세 페이지
-      // },
+      {
+        path: "/showu/lesson/detail",
+        element: <TeamDetailContainer />, //lesson 상세 페이지
+      },
       {
         path: "/showu/team",
         element: <TeamContainer />, //team 메인
