@@ -8,6 +8,7 @@ const TeamContainer = () => {
   const [ teams, setTeams ] = useState([]);
   const [filter, setFilter] = useState("전체");
 
+
   useEffect(() => {
     const getTeamList = async () => {
       try {
@@ -68,7 +69,7 @@ const TeamContainer = () => {
                     </S.category>
                     <S.LessonExplantion>
                       <li className='lessonDetail'
-                        onClick={() => navigate("/showu/lesson/detail")}
+                        onClick={() => navigate(`/showu/lesson/detail/${team._id}`)}
                       >{team.teamIntro}</li>
                       <S.Career>
                         <FontAwesomeIcon icon={faThumbtack} />

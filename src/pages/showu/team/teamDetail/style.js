@@ -79,6 +79,7 @@ const S = {};
     }
 
     & p.intro {
+      width: 890px;
       font-size: 22px;
     }
   `

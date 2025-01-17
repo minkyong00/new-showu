@@ -394,7 +394,7 @@ const router = createBrowserRouter([
         element: <LessonContainer />, //lesson 메인
       },
       {
-        path: "/showu/lesson/detail",
+        path: "/showu/lesson/detail/:id",
         element: <TeamDetailContainer />, //lesson 상세 페이지
       },
       {
