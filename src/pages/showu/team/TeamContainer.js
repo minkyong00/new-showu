@@ -60,16 +60,16 @@ const TeamContainer = () => {
                 <S.LessonBox key={i}>
                   <ul>
                     <S.UserInfo>
-                      <img src={team.teamProfilo}></img>
+                      <img src={`http://localhost:8000${team.teamProfile}`}></img>
                       <div>
                         <li className='teamName'>{team.teamName}</li>
-                        <li className='category'>{team.portfilo.field}</li>
+                        <li className='category'>{team.categoty}</li>
                       </div>
                     </S.UserInfo>
                     <S.Hr />
                     <S.category>
                       <li className='total'>{team.userName.role}</li>
-                      <li className='category'>{team.portfilo.field}</li>
+                      <li className='category'>{team.categoty}</li>
                     </S.category>
                     <S.LessonExplantion>
                       <li className='lessonDetail'
@@ -77,12 +77,12 @@ const TeamContainer = () => {
                       >{team.teamIntro}</li>
                       <S.Career>
                         <FontAwesomeIcon icon={faThumbtack} />
-                        <li className='lessonName'>{team.portfilo.total}</li>
+                        <li className='lessonName'>{team.careerHistory}</li>
                       </S.Career>
                     </S.LessonExplantion>
                     <S.Period>
                       <FontAwesomeIcon icon={faCalendarDays} />
-                      <li>{team.activityPeriod.start} - {team.activityPeriod.end}</li>
+                      <li>{team.activityPeriodStart}</li>
                     </S.Period>
                   </ul>
                 </S.LessonBox>

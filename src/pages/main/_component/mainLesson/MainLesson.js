@@ -70,7 +70,7 @@ const MainLesson = () => {
           <S.LessonBox key={i} data-aos="fade-up">
             <ul>
               <S.category>
-                <li className='total'>{lesson.userInfo.total}</li>
+                {/* <li className='total'>{lesson.userInfo.total}</li> */}
                 <li className='category'>{lesson.category}</li>
               </S.category>
               <S.UserInfo>

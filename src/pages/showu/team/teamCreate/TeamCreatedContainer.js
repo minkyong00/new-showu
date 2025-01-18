@@ -9,12 +9,16 @@ import { useForm } from 'react-hook-form';
 const TeamCreatedContainer = () => {
   const navigate = useNavigate();
   const [filesPath, setFilesPath] = useState(null);
-  const [fileName, setFileName] = useState(''); // 선택한 파일 이름
+  const [fileName, setFileName] = useState(''); // 포트폴리오 선택한 파일 이름
+  const [filesPath2, setFilesPath2] = useState(null);
+  const [fileName2, setFileName2] = useState(''); // 프로필 이미지 선택한 파일 이름
   const { currentUser } = useSelector((state) => state.user);
   const jwtToken = localStorage.getItem("jwtToken");
 
   console.log("filesPath", filesPath)
   console.log("fileName", fileName)
+  console.log("filesPath2", filesPath2)
+  console.log("fileName2", fileName2)
 
   const { 
     register, 
@@ -33,6 +37,16 @@ const TeamCreatedContainer = () => {
     }
   };
 
+  const handleFileChange2 = (e) => {
+    const selectedFile2 = e.target.files[0];
+    console.log("selectedFile2", selectedFile2)
+    if (selectedFile2) {
+      setFileName2(selectedFile2.name); // 선택된 파일 이름을 상태에 저장
+    } else {
+      setFileName2(''); // 파일이 선택되지 않은 경우 상태 초기화
+    }
+  };
+
   return (
     <S.Wrapper>
       <p className='newTeam'>새 팀 개설</p>
@@ -48,11 +62,18 @@ const TeamCreatedContainer = () => {
             const formData = new FormData();
 
 
-            //파일 추가
+            //포트폴리오 파일 추가
             const fileInput = document.getElementById('file');
             const selectedFile = fileInput.files[0];
             if(selectedFile){
               formData.append("file", selectedFile)
+            }
+
+            // 프로필 이미지 파일 추가
+            const fileInput2 = document.getElementById('teamProfile')
+            const selectedFile2 = fileInput2.files[0];
+            if(selectedFile2){
+              formData.append("teamProfile", selectedFile2)
             }
 
             formData.append("teamName", data.teamName);
@@ -77,10 +98,28 @@ const TeamCreatedContainer = () => {
                 if(!res.teamCreateSuccess){
                   console.log(res.message)
                 }
-                console.log("filepath", res.filePath)
-                const newFilePath = `http://localhost:8000${res.filePath}`
-                setFilesPath(newFilePath);
-                console.log("newFilePath", newFilePath)
+
+                // console.log("filepath", res.filePath)
+                // const newFilePath = `http://localhost:8000${res.filePath}`
+                // setFilesPath(newFilePath);
+                // console.log("newFilePath", newFilePath)
+
+                // 포트폴리오 파일 경로 처리
+                if (res.filePath) {
+                  console.log('filepath', res.filePath);
+                  const newFilePath = `http://localhost:8000${res.filePath}`;
+                  setFilesPath(newFilePath);
+                  console.log('newFilePath', newFilePath);
+                }
+
+                // 프로필 이미지 파일 경로 처리
+                if (res.profileFilePath) {
+                  console.log('profileFilePath', res.profileFilePath);
+                  const newFilePath2 = `http://localhost:8000${res.profileFilePath}`;
+                  setFilesPath2(newFilePath2);
+                  console.log('newProfileFilePath', newFilePath2);
+                }
+
                 alert(res.message);
                 console.log("팀 개설 완료");
               })
@@ -217,6 +256,22 @@ const TeamCreatedContainer = () => {
                   }}
                 />
                 <span>{fileName ? `${fileName}` : '+자료첨부'}</span>
+              </S.Label>
+            </S.Portfolio>
+
+            <S.Portfolio>
+              <S.Label htmlFor='teamProfile'>
+                <p>팀 프로필 이미지</p>
+                <input 
+                  type='file'
+                  name='teamProfile'
+                  id='teamProfile'
+                  {...register("teamProfile")}
+                  onChange={(e) => {
+                    handleFileChange2(e);
+                  }}
+                />
+                <span>{fileName2 ? `${fileName2}` : '+자료첨부'}</span>
               </S.Label>
             </S.Portfolio>
 

@@ -24,8 +24,8 @@ const TeamDetailContainer = () => {
               console.log(res.message)
             }
             setTeams(res.teamList)
-            console.log(res.message)
-            console.log(res.teamList)
+            console.log(res.message);
+            console.log(res.teamList);
           })
       } catch (error) {
         console.log("team detail Error", error)
@@ -36,6 +36,7 @@ const TeamDetailContainer = () => {
 
   }, [])
 
+  console.log("teams", teams)
 
   return (
     <div>
@@ -49,7 +50,7 @@ const TeamDetailContainer = () => {
                 className='banner'
               ></img>
               <img
-                src={item.teamProfilo}
+                src={`http://localhost:8000${item.teamProfile}`}
                 className='profilo'
               ></img>
             </S.Banner>
@@ -73,7 +74,9 @@ const TeamDetailContainer = () => {
                   </S.Apply>
                 </S.AllButton>
               </S.Title>
+
               <S.hr />
+
               {/* 모집 유형 */}
               <S.JobContent>
                 <p>모집 유형</p>
@@ -81,14 +84,14 @@ const TeamDetailContainer = () => {
                   <div>
                     <S.Row className='row'>
                       <span>분야</span>
-                      <div className='col'>
-                        <span>{item.portfilo.field}</span>
+                      <div className='col1'>
+                        <span>{item.categoty}</span>
                       </div>
                     </S.Row>
                     <S.Row className='row'>
                       <span>경력</span>
-                      <div className='col'>
-                        <span>경력무관</span>
+                      <div className='col2'>
+                        <span>{item.careerHistory}</span>
                       </div>
                     </S.Row>
                     <S.Row className='row'>
@@ -100,7 +103,9 @@ const TeamDetailContainer = () => {
                   </div>
                 </div>
               </S.JobContent>
+
               <S.hr />
+
               {/* 팀매칭 내용 */}
               <S.Content>
                 <p className='content'>내용</p>
@@ -108,35 +113,42 @@ const TeamDetailContainer = () => {
               </S.Content>
               <S.hr />
             </S.RightSection>
+
             {/* 팀 소개 */}
             <S.LeftSection>
-              <p>팀 소개</p>
+              <p className='rightTitle'>팀 소개</p>
               <S.TeamIntro>
                 <img
-                  src='/images/showu/team/teamProfilo.png'
+                  src={`http://localhost:8000${item.teamProfile}`}
                   className='profilo'
                 >
                 </img>
                 <div>
-                  <p>{item.teamName}</p>
-                  <p>{item.portfilo.field}</p>
+                  <p className='rightSubTitle'>{item.teamName}</p>
+                  <p className='rightSubTitle'>{item.categoty}</p>
                 </div>
               </S.TeamIntro>
+
               <S.LeftContent>
                 <div>
-                  <p>소개</p>
-                  <p>{item.teamTitle}</p>
+                  <p className='subTitle'>소개</p>
+                  <p className='subContent'>{item.teamTitle}</p>
                 </div>
                 <div>
-                  <p>위치</p>
-                  <p>서울, 중랑구</p>
+                  <p className='subTitle'>위치</p>
+                  <p className='subContent'>{item.area}</p>
                 </div>
                 <div>
-                  <p>설립일</p>
-                  <p>{item.activityPeriod.start}</p>
+                  <p className='subTitle'>팀 활동 시작일</p>
+                  <p className='subContent'>{item.activityPeriodStart}</p>
+                </div>
+                <div>
+                  <p className='subTitle'>팀 공고 마감일</p>
+                  <p className='subContent'>{item.deadLine}</p>
                 </div>
               </S.LeftContent>
             </S.LeftSection>
+
           </S.SectoinWarpper>
         </div>
       ))

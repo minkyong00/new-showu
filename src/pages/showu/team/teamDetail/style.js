@@ -19,7 +19,7 @@ const S = {};
       height: 300px;
       object-fit: cover;
 
-      border: 1px solid #fff;
+      border: 1px solid #444444;
     }
 
     & img.profilo {
@@ -47,7 +47,7 @@ const S = {};
   `
 
   S.Title = styled.div`
-    width: 890px;
+    width: 800px;
     display: flex;
     align-items: center;
     position: relative;
@@ -55,7 +55,7 @@ const S = {};
     /* gap: 600px; */
   
     & p.title {
-      width: 730px;
+      width: 800px;
       font-size: 30px;
       font-weight: 700;
     }
@@ -65,31 +65,53 @@ const S = {};
     & p{
       font-size: 24px;
       font-weight: 700;
+      margin-bottom: 13px;
     }
   `
 
   S.Row = styled.div`
     display: flex;
+    gap: 60px;
+
+    & div.col1 {
+      margin-left: 26px;
+    }
+
+    & div.col2 {
+      margin-left: 26px;
+    }
   `
 
   S.Content = styled.div`
     & p.content {
       font-size: 24px;
       font-weight: 700;
+      margin-bottom: 13px;
     }
 
     & p.intro {
-      width: 890px;
+      width: 800px;
       font-size: 22px;
     }
   `
 
   S.LeftSection = styled.div`
-    border: 1px solid #fff;
+    border: 1px solid #444444;
+    border-radius: 5px;
     width: 290px;
     padding: 35px 30px;
+
+    & p.rightTitle{
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
     & div{
-      /* border: 1px solid #fff; */
+      & p.rightSubTitle {
+        font-size: 18px;
+        font-weight: 600;
+      }
     }
   `
 
@@ -104,12 +126,25 @@ const S = {};
       border-radius: 50%;
       /* background-color: #fff; */
       padding: 1px;
+      margin-bottom: 10px;
     }
   `
 
   S.LeftContent = styled.div`
     display: flex;
     flex-direction: column;
+
+    & div{
+      & p.subTitle {
+        font-size: 18px;
+        color: #797979;
+        margin: 5px 0;
+      }
+      & p.subContent {
+        font-size: 17px;
+        color: #fff;
+      }
+    }
   `
 
 
@@ -140,7 +175,7 @@ const S = {};
     border-radius: 50%;
     background-color: #000;
     text-align: center;
-    line-height: 2.6;
+    line-height: 2.3;
 
     & svg.download {
       width: 15px;
@@ -179,11 +214,9 @@ const S = {};
   `
 
   S.hr = styled.hr`
-    width: 890px;
+    width: 800px;
     border: 1px solid #444444;
     margin: 35px 0;
   `
-
-  
 
 export default S;
