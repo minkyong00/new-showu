@@ -15,10 +15,10 @@ const TeamCreatedContainer = () => {
   const { currentUser } = useSelector((state) => state.user);
   const jwtToken = localStorage.getItem("jwtToken");
 
-  console.log("filesPath", filesPath)
-  console.log("fileName", fileName)
-  console.log("filesPath2", filesPath2)
-  console.log("fileName2", fileName2)
+  // console.log("filesPath", filesPath)
+  // console.log("fileName", fileName)
+  // console.log("filesPath2", filesPath2)
+  // console.log("fileName2", fileName2)
 
   const { 
     register, 

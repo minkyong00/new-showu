@@ -34,7 +34,7 @@ const S = {};
 
   S.FormContainer = styled.div`
     width: 1000px;
-    height: 100vh;
+    height: 110vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -179,7 +179,7 @@ const S = {};
 
   S.Portfolio = styled.div`
     & label::after {
-      content: '+자료첨부';
+      /* content: '+자료첨부'; */
       cursor: pointer;
       font-size: 17px;
       margin-left: 8px;
@@ -206,13 +206,13 @@ const S = {};
       color: white;
 
       position: absolute;
-      bottom: 140px;
+      bottom: 70px;
       left: 680px;
     }
 
     &.submit {
       position: absolute;
-      bottom: 140px;
+      bottom: 70px;
       left: 850px;
     }
   `

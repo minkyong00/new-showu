@@ -412,7 +412,7 @@ const router = createBrowserRouter([
         element: <TeamCreatedContainer />, //team 개설 페이지
       },
       {
-        path: "/showu/team/apply",
+        path: "/showu/team/apply/:id",
         element: <TeamApplyContainer />, //team 개설 페이지
       },
       {

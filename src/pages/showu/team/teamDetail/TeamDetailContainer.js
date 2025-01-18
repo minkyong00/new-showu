@@ -68,7 +68,7 @@ const TeamDetailContainer = () => {
                     <FontAwesomeIcon icon={faHeart} className='heart' />
                   </S.Heart>
                   <S.Apply
-                    onClick={() => navigate("/showu/team/apply")}
+                    onClick={() => navigate(`/showu/team/apply/${item._id}`)}
                   >
                     <p>지원</p>
                   </S.Apply>
