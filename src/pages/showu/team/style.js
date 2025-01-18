@@ -148,4 +148,10 @@ const S = {};
     top: 125px;
   `
 
+  S.TeamCreateButton = styled.div`
+    & div{
+      cursor: pointer;
+    }
+  `
+
 export default S;

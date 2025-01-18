@@ -40,9 +40,9 @@ const TeamContainer = () => {
       : teams.filter((team) => team.portfilo.field === filter)
     : [];
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  console.log("teams", teams)
+  // console.log("teams", teams)
 
   return (
     <div>
@@ -51,6 +51,10 @@ const TeamContainer = () => {
           <S.MoreLesson>
             <FontAwesomeIcon icon={faChevronDown} className="down" />
           </S.MoreLesson>
+          {/* 팀 개설 버튼 */}
+          <S.TeamCreateButton>
+            <div onClick={() => navigate("/showu/team/create")}>팀 개설하기</div>
+          </S.TeamCreateButton>
             <S.LessonWrapper>
               {teams.map((team, i) => (
                 <S.LessonBox key={i}>
@@ -69,7 +73,7 @@ const TeamContainer = () => {
                     </S.category>
                     <S.LessonExplantion>
                       <li className='lessonDetail'
-                        onClick={() => navigate(`/showu/lesson/detail/${team._id}`)}
+                        onClick={() => navigate(`/showu/team/detail/${team._id}`)}
                       >{team.teamIntro}</li>
                       <S.Career>
                         <FontAwesomeIcon icon={faThumbtack} />

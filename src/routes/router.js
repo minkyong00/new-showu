@@ -103,6 +103,7 @@ import AdminUpgradContainer from '../pages/admin/AdminUpgradContainer';
 import LessonContainer from '../pages/showu/lesson/LessonContainer';
 import TeamContainer from '../pages/showu/team/TeamContainer';
 import TeamDetailContainer from '../pages/showu/team/teamDetail/TeamDetailContainer';
+import TeamCreatedContainer from '../pages/showu/team/teamCreate/TeamCreatedContainer';
 
 const router = createBrowserRouter([
   {
@@ -393,18 +394,22 @@ const router = createBrowserRouter([
         path: "/showu/lesson",
         element: <LessonContainer />, //lesson 메인
       },
-      {
-        path: "/showu/lesson/detail/:id",
-        element: <TeamDetailContainer />, //lesson 상세 페이지
-      },
+      // {
+      //   path: "/showu/lesson/detail/:id",
+      //   element: <TeamDetailContainer />, //lesson 상세 페이지
+      // },
       {
         path: "/showu/team",
         element: <TeamContainer />, //team 메인
       },
-      // {
-      //   path: "/showu/team/detail/:id",
-      //   element: <TeamDetails />, //team 상세 페이지
-      // },
+      {
+        path: "/showu/team/detail/:id",
+        element: <TeamDetailContainer />, //team 상세 페이지
+      },
+      {
+        path: "/showu/team/create",
+        element: <TeamCreatedContainer />, //team 개설 페이지
+      },
       {
         path: "/vod",
         element: <VodContainer />,

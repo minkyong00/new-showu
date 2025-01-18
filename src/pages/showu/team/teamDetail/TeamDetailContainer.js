@@ -41,18 +41,18 @@ const TeamDetailContainer = () => {
       { teams && teams.map((item, i) => (
         <div key={i}>
           <S.Wrapper>
-          {/* 배너 */}
-          <S.Banner>
-            <img
-              src='/images/showu/team/teamBanner.png'
-              className='banner'
-            ></img>
-            <img
-              src={item.teamProfilo}
-              className='profilo'
-            ></img>
-          </S.Banner>
-                </S.Wrapper>
+            {/* 배너 */}
+            <S.Banner>
+              <img
+                src='/images/showu/team/teamBanner.png'
+                className='banner'
+              ></img>
+              <img
+                src={item.teamProfilo}
+                className='profilo'
+              ></img>
+            </S.Banner>
+          </S.Wrapper>
           <S.SectoinWarpper>
             <S.RightSection>
             {/* 팀 매칭 제목, 찜, 지원 버튼 */}
