@@ -78,7 +78,7 @@ const MainTeam = () => {
               </S.UserInfo>
               <S.Hr />
               <S.category>
-                <li className='total'>{team.userName.role}</li>
+                {/* <li className='total'>{team.userName.role}</li> */}
                 <li className='category'>{team.category}</li>
               </S.category>
               <S.LessonExplantion>

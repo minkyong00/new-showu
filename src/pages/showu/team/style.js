@@ -154,4 +154,31 @@ const S = {};
     }
   `
 
+  S.CategoryButtonWrapper = styled.div`
+    display: flex;
+    gap: 10px;
+    width: 1100px;
+    margin: 60px auto 0;
+    padding: 10px 20px;
+  `
+
+  S.CategoryButton = styled.button`
+    border-radius: 30px;
+    padding: 10px 15px;
+    background-color: #000;
+    color: #fff;
+    border: 1.5px solid #ffd400;
+    cursor: pointer;
+
+    &.active {
+      background-color: #ffd400;
+      color: #000;
+    }
+
+    &:hover {
+      background-color: #ffd400;
+      color: #000;
+    }
+  `
+
 export default S;

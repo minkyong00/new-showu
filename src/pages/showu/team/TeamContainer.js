@@ -6,7 +6,9 @@ import S from './style';
 
 const TeamContainer = () => {
   const [ teams, setTeams ] = useState([]);
-  const [filter, setFilter] = useState("전체");
+  // const [filter, setFilter] = useState("전체");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState("전체");
 
 
   useEffect(() => {
@@ -33,14 +35,28 @@ const TeamContainer = () => {
 
   }, [])
 
-  //category 필터링
-  const filterTeams = Array.isArray(teams)
-    ? filter === "전체"
-      ? teams
-      : teams.filter((team) => team.portfilo.field === filter)
-    : [];
+  // 카테고리 필터
+  const handleCategoryChange = (category) => {
+    setCurrentCategory(category);
+  };
+
+  useEffect(() => {
+    if (currentCategory === "전체") {
+      setFilteredProducts(teams);
+    } else {
+      setFilteredProducts(
+        teams.filter((team) => team.category === currentCategory)
+      );
+    }
+  }, [teams, currentCategory]);
+
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("Teams data:", teams);
+    console.log("Filtered data:", filteredProducts);
+  }, [teams, filteredProducts]);
 
   // console.log("teams", teams)
 
@@ -55,22 +71,38 @@ const TeamContainer = () => {
           <S.TeamCreateButton>
             <div onClick={() => navigate("/showu/team/create")}>팀 개설하기</div>
           </S.TeamCreateButton>
+
+          <S.CategoryButtonWrapper>
+            {["전체", "연기", "음악", "마술"].map((category) => (
+              <S.CategoryButton
+                key={category}
+                onClick={() => handleCategoryChange(category)}
+                className={currentCategory === category ? 'active' : ''}
+              >
+                {category}
+              </S.CategoryButton>
+            ))}
+          </S.CategoryButtonWrapper>
+
             <S.LessonWrapper>
-              {teams.map((team, i) => (
+              {filteredProducts.map((team, i) => (
                 <S.LessonBox key={i}>
                   <ul>
-                    <S.UserInfo>
-                      <img src={`http://localhost:8000${team.teamProfile}`}></img>
+                    <S.UserInfo>  
+                      <img src={`http://localhost:8000${team.teamProfile}`} alt="team profile"></img>
                       <div>
                         <li className='teamName'>{team.teamName}</li>
-                        <li className='category'>{team.categoty}</li>
+                        <li className='category'>{team.category}</li>
                       </div>
                     </S.UserInfo>
+
                     <S.Hr />
+
                     <S.category>
                       <li className='total'>{team.userName.role}</li>
-                      <li className='category'>{team.categoty}</li>
+                      <li className='category'>{team.category}</li>
                     </S.category>
+
                     <S.LessonExplantion>
                       <li className='lessonDetail'
                         onClick={() => navigate(`/showu/team/detail/${team._id}`)}
