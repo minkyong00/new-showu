@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import S from './style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faHeart } from '@fortawesome/free-solid-svg-icons';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const TeamDetailContainer = () => {
   const [ teams, setTeams ] = useState([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getTeamDetails = async () => {
@@ -65,7 +66,9 @@ const TeamDetailContainer = () => {
                   <S.Heart>
                     <FontAwesomeIcon icon={faHeart} className='heart' />
                   </S.Heart>
-                  <S.Apply>
+                  <S.Apply
+                    onClick={() => navigate("/showu/team/apply")}
+                  >
                     <p>지원</p>
                   </S.Apply>
                 </S.AllButton>

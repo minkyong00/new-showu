@@ -43,7 +43,7 @@ const TeamCreatedContainer = () => {
 
             <div>
               <S.Label htmlFor='endDate'>
-                <p>팀 활동 종료일</p>
+                <p>팀 공고 마감일</p>
                 <input 
                   type='date'
                   name='endDate'  

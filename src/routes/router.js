@@ -104,6 +104,7 @@ import LessonContainer from '../pages/showu/lesson/LessonContainer';
 import TeamContainer from '../pages/showu/team/TeamContainer';
 import TeamDetailContainer from '../pages/showu/team/teamDetail/TeamDetailContainer';
 import TeamCreatedContainer from '../pages/showu/team/teamCreate/TeamCreatedContainer';
+import TeamApplyContainer from '../pages/showu/team/teamApply/TeamApplyContainer';
 
 const router = createBrowserRouter([
   {
@@ -409,6 +410,10 @@ const router = createBrowserRouter([
       {
         path: "/showu/team/create",
         element: <TeamCreatedContainer />, //team 개설 페이지
+      },
+      {
+        path: "/showu/team/apply",
+        element: <TeamApplyContainer />, //team 개설 페이지
       },
       {
         path: "/vod",
