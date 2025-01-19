@@ -85,7 +85,7 @@ const TeamDetailContainer = () => {
                     <S.Row className='row'>
                       <span>분야</span>
                       <div className='col1'>
-                        <span>{item.categoty}</span>
+                        <span>{item.category}</span>
                       </div>
                     </S.Row>
                     <S.Row className='row'>

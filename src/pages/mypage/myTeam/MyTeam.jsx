@@ -67,6 +67,7 @@ const MyTeam = () => {
           <S.SubTitle className="subTitle">
             <ul>
               <li>팀 매칭 내역</li>
+              <li onClick={() => navigate("/my-team/management")}>팀원 관리</li>
             </ul>
           </S.SubTitle>
         </S.Title>

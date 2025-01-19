@@ -74,7 +74,7 @@ const MainLesson = () => {
                 <li className='category'>{lesson.category}</li>
               </S.category>
               <S.UserInfo>
-                <img src={`http://localhost:8000/${lesson.userName.picture}` || `http://localhost:8000/uploads/profiles/user.png`}></img>
+                {/* <img src={`http://localhost:8000/${lesson.userName.picture}` || `http://localhost:8000/uploads/profiles/user.png`}></img> */}
                 <div>
                   <li className='userName'>{lesson.userName.name}</li>
                   <S.Address>
