@@ -72,7 +72,7 @@ const TeamManagment = () => {
 
         setManagment(prevManagment => prevManagment.map((item) => 
           item._id === applyId
-            ? {...item, applyId: { ...item.applyId, status : status }}
+            ? {...item, applyId: { ...item.applyId, staisApplyStatustus : status }}
             : item
         ))
       })
@@ -146,7 +146,7 @@ const TeamManagment = () => {
                         className='rejectButton'
                         onClick={(e) => {
                           e.stopPropagation();
-                          // handleTeamMatchingChange(item.applyId._id, '거절');
+                          handleTeamMatchingChange(item.applyId._id, item.teamId._id, '거절');
                         }}
                       >
                         거절
