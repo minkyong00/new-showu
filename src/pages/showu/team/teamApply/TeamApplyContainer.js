@@ -4,16 +4,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 const TeamApplyContainer = () => {
   const navigate = useNavigate();
   const [filesPath, setFilesPath] = useState(null);
   const [fileName, setFileName] = useState(''); // 포트폴리오 선택한 파일 이름
+  const { currentUser } = useSelector((state) => state.user)
   const jwtToken = localStorage.getItem("jwtToken");
   const { id } = useParams();
 
-  console.log("filesPath", filesPath)
-  console.log("fileName", fileName)
+  // console.log("filesPath", filesPath)
+  // console.log("fileName", fileName)
 
   const { 
     register, 
@@ -31,6 +33,7 @@ const TeamApplyContainer = () => {
       setFileName(''); // 파일이 선택되지 않은 경우 상태 초기화
     }
   };
+
 
   return (
     <S.Wrapper>
@@ -71,6 +74,7 @@ const TeamApplyContainer = () => {
               setFilesPath(newFilesPath);
               alert(res.message);
               console.log("팀 지원 완료")
+              navigate(`/showu/team/detail/${id}`)
             })
             .catch((error) => {
               console.error("팀 지원 신청 중 오류 발생", error)
@@ -80,11 +84,11 @@ const TeamApplyContainer = () => {
 
             <div>
               <S.Label htmlFor='teamName'>
-                <p>팀 이름</p>
+                <p>지원자 성함</p>
                 <span
                   id='teamName'
                 >
-                  팀이름
+                  {currentUser.name}
                 </span>
               </S.Label>
             </div>
@@ -99,15 +103,6 @@ const TeamApplyContainer = () => {
                   {...register("intro", {required : true})}
                 />
               </S.LabelTextAarea>
-            </div>
-
-            <div>
-              <S.Label htmlFor='career'>
-                <p>경력사항</p>
-                <span
-                  id='career'
-                >신입</span>
-              </S.Label>
             </div>
 
             <S.Portfolio>

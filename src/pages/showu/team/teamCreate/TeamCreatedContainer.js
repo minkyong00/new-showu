@@ -77,7 +77,7 @@ const TeamCreatedContainer = () => {
             }
 
             formData.append("teamName", data.teamName);
-            formData.append("categoty", data.categoty);
+            formData.append("category", data.category);
             formData.append("teamTitle", data.teamTitle);
             formData.append("teamIntro", data.teamIntro);
             formData.append("area", data.area);
@@ -122,6 +122,7 @@ const TeamCreatedContainer = () => {
 
                 alert(res.message);
                 console.log("팀 개설 완료");
+                navigate("/showu/team")
               })
               .catch((error) => {
                 console.error("팀 개설 중 오류 발생", error)

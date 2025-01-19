@@ -34,7 +34,7 @@ const S = {};
 
   S.FormContainer = styled.div`
     width: 1000px;
-    height: 110vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -206,13 +206,13 @@ const S = {};
       color: white;
 
       position: absolute;
-      bottom: 70px;
+      bottom: 180px;
       left: 680px;
     }
 
     &.submit {
       position: absolute;
-      bottom: 70px;
+      bottom: 180px;
       left: 850px;
     }
   `
