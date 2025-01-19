@@ -11,7 +11,8 @@ const TeamManagment = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const getTeamManagment = async () => {
+    const getTeamManagment = async (teamId) => {
+
       try {
         await fetch(`http://localhost:8000/my/showu/managment`, {
           method : "GET",
@@ -42,6 +43,46 @@ const TeamManagment = () => {
     setSelectedTeamManagment(null);
   }
 
+  // 승인/거절 버튼 클릭 시 팀원 상태 변경
+  const handleTeamMatchingChange = async (applyId, teamId, status) => {
+    const data = {
+      userId : applyId,
+      teamId : teamId,
+      isApplyStatus : status === '승인',
+      applyStatus : status === '승인' ? '승인': '거절',
+      status : status === '승인' ? "매칭 완료" : "매칭 대기"
+    };
+
+    console.log("data", data)
+
+    try {
+      const response = await fetch(`http://localhost:8000/my/showu/request-status/${status === '승인' ? 'approve' : 'reject'}`, {
+        method : 'PUT',
+        headers : {
+          'Content-Type': 'application/json'
+        },
+        body : JSON.stringify(data)
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        if(!res.ok){
+          console.log(res.message)
+        }
+        alert(res.message)
+
+        setManagment(prevManagment => prevManagment.map((item) => 
+          item._id === applyId
+            ? {...item, applyId: { ...item.applyId, status : status }}
+            : item
+        ))
+      })
+      
+    } catch (error) {
+      console.error("실패", error.message)
+    }
+  }
+
+
   const handleRowClick = async (applyId, e) => {
     if(e.target.tegName !== 'BUTTON'){
       try {
@@ -60,6 +101,8 @@ const TeamManagment = () => {
       }
     }
   }
+
+  console.log("managment", managment)
 
   console.log("selectedTeamManagment", selectedTeamManagment)
 
@@ -83,7 +126,7 @@ const TeamManagment = () => {
                   key={item._id}
                   onClick={(e) => handleRowClick(item._id, e)}  // 행 클릭 시 모달 열기
                 >
-                  <th scope="row" className="num">{item.teamName}</th>
+                  <th scope="row" className="num">{item.applyId.name}</th>
                   {/* <td>{item.field}</td> */}
                   <td>{item.career}</td>
                   {/* <td>{item.exportName.role}</td>
@@ -94,7 +137,7 @@ const TeamManagment = () => {
                         className='exportButton'
                         onClick={(e) => {
                           e.stopPropagation(); // 클릭 이벤트가 부모 요소로 전달되지 않도록 함
-                          // handleUserRoleChange(item.exportName._id, '승인');
+                          handleTeamMatchingChange(item.applyId, item.teamId._id, '승인');
                         }}
                       >
                         승인
@@ -103,7 +146,7 @@ const TeamManagment = () => {
                         className='rejectButton'
                         onClick={(e) => {
                           e.stopPropagation();
-                          // handleUserRoleChange(item.exportName._id, '거절');
+                          // handleTeamMatchingChange(item.applyId._id, '거절');
                         }}
                       >
                         거절

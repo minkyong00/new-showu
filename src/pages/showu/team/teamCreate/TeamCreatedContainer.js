@@ -212,7 +212,7 @@ const TeamCreatedContainer = () => {
                   name='category'  
                   id='category'
                   placeholder='연기, 음악, 마술 중 선택하여 작성해주세요'
-                  {...register("categoty", {required : true})}
+                  {...register("category", {required : true})}
                 />
               </S.Label>
             </div>
