@@ -13,6 +13,8 @@ const S = {};
     background-color:#000; 
     min-height: 100vh;
 
+    position: relative;
+
     & p{
       font-size: 30px;
       font-weight: bold;
@@ -23,7 +25,9 @@ const S = {};
   `
 
   S.LessonWrapper = styled.div`
+    width: 1000px;
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
    
   `
@@ -44,7 +48,7 @@ const S = {};
   `
 
   S.LessonBox = styled.div`
-    width: 290px;
+    width: 313px;
     height: 400px;
     border: 1px solid #444444;
     border-radius: 10px;
@@ -149,15 +153,28 @@ const S = {};
   `
 
   S.TeamCreateButton = styled.div`
+    position: absolute;
+    top: 210px;
+    right: 350px;
+
     & div{
       cursor: pointer;
+      background-color: #ffd400;
+      width: 110px;
+      border-radius: 20px;
+      height: 38px;
+      text-align: center;
+      color: #000;
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 2;
     }
   `
 
   S.CategoryButtonWrapper = styled.div`
     display: flex;
     gap: 10px;
-    width: 1100px;
+    width: 1000px;
     margin: 60px auto 0;
     padding: 10px 20px;
   `

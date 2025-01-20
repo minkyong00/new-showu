@@ -7,7 +7,7 @@ import usePagination from '../../../hooks/usePagination';
 import TeamComponent from './TeamComponent';
 
 const PAGINATION = {
-  pageRange: 3,
+  pageRange: 6,
   btnRange: 3,
 };
 
