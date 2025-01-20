@@ -53,13 +53,13 @@ const ManagmentModal = ({ showModal, selectedTeamManagment, closeModal }) => {
                   <div className='ContentTitle'>포트폴리오</div> 
                   <div>{selectedTeamManagment.file.split("/").pop()}</div>
                 </div>{' '}
-                {/* <a
-                  href={`http://localhost:8000/admin/upgrade/download-file/${selectedTeamManagment.file.split('/').pop()}`}
+                <a
+                  href={`http://localhost:8000/my/showu/download-file/${selectedTeamManagment.file.split('/').pop()}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <span className='downloadeButton'>포트폴리오 다운로드</span>
-                </a> */}
+                </a>
               </S.ModalContent>
             )}
           </S.ModalBody>

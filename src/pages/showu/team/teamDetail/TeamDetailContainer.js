@@ -36,6 +36,7 @@ const TeamDetailContainer = () => {
 
   }, [])
 
+  // console.log("teams", teams.map(item => item.file))
   console.log("teams", teams)
 
   return (
@@ -61,9 +62,17 @@ const TeamDetailContainer = () => {
               <S.Title>
                 <p className='title'>{item.teamTitle}</p>
                 <S.AllButton>
-                  <S.FileDown>
-                  <FontAwesomeIcon icon={faDownload} className='download'/>
-                  </S.FileDown>
+                  {item.file && (
+                    <S.FileDown>
+                      <a 
+                        href={`http://localhost:8000/showu/team/down-file/${item.file.split('/').pop()}`}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >
+                        <FontAwesomeIcon icon={faDownload} className='download'/>
+                      </a>
+                    </S.FileDown>
+                    )}
                   <S.Heart>
                     <FontAwesomeIcon icon={faHeart} className='heart' />
                   </S.Heart>
