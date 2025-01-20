@@ -31,19 +31,19 @@ const ManagmentModal = ({ showModal, selectedTeamManagment, closeModal }) => {
             <S.ModalContent>
               <div className='ContentWarpper'>
                 <div className='ContentTitle'>전문분야</div> 
-                {/* <div>{selectedUpgrade.upgrade.field}</div> */}
+                <div>{selectedTeamManagment.foundManagmentDeatil.upgradeId.field}</div>  
               </div>
             </S.ModalContent>
             <S.ModalContent>
               <div className='ContentWarpper'>
                 <div className='ContentTitle'>경력사항</div> 
-                {/* <div>{selectedUpgrade.upgrade.career}</div> */}
+                <div>{selectedTeamManagment.foundManagmentDeatil.upgradeId.total}</div>
               </div>
             </S.ModalContent>
             <S.ModalContent>
               <div className='ContentWarpper'>
-                <div className='ContentTitle'>등급 상태</div> 
-                {/* <div>{selectedUpgrade.upgrade.exportName.role}</div> */}
+                <div className='ContentTitle'>승인 상태</div> 
+                <div>{selectedTeamManagment.foundManagmentDeatil.applyStatus}</div>
               </div>
             </S.ModalContent>
 

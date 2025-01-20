@@ -10,31 +10,34 @@ const TeamManagment = () => {
   const [selectedTeamManagment, setSelectedTeamManagment] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    const getTeamManagment = async (teamId) => {
+  const getTeamManagment = async () => {
 
-      try {
-        await fetch(`http://localhost:8000/my/showu/managment`, {
-          method : "GET",
-          headers : {
-            Authorization: `Bearer ${jwtToken}`
-          }
-        })
-          .then((res) => res.json())
-          .then((res) => {
-            if(!res.teamManagmentSuccess){
-              console.log(res.message)
-            }
+    try {
+      await fetch(`http://localhost:8000/my/showu/managment`, {
+        method : "GET",
+        headers : {
+          Authorization: `Bearer ${jwtToken}`
+        }
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if(!res.teamManagmentSuccess){
             console.log(res.message)
-            setManagment(res.managmentList)
-            console.log(res.managmentList)
-          })
-      } catch (error) {
-        console.error("팀원 관리 내역 불러오는 중 오류 발생", error)
-      }
+          }
+          console.log(res.message)
+          setManagment(res.managmentList)
+          console.log(res.managmentList)
+        })
+    } catch (error) {
+      console.error("팀원 관리 내역 불러오는 중 오류 발생", error)
     }
+  }
 
-    getTeamManagment();
+  useEffect(() => {
+    
+    if(jwtToken){
+      getTeamManagment();
+    }
 
   }, [jwtToken])
 
@@ -75,6 +78,9 @@ const TeamManagment = () => {
             ? {...item, applyId: { ...item.applyId, staisApplyStatustus : status }}
             : item
         ))
+
+        getTeamManagment();
+        
       })
       
     } catch (error) {
@@ -113,10 +119,10 @@ const TeamManagment = () => {
             <S.Thead>
               <S.Tr>
                 <th scope="col">전문가 성함</th>
-                {/* <th scope="col">전문분야</th> */}
+                <th scope="col">전문분야</th>
                 <th scope="col">경력사항</th>
-                {/* <th scope="col">회원 등급</th> */}
-                {/* <th scope="col">등급 상태</th> */}
+                <th scope="col">회원 등급</th>
+                <th scope="col">승인상태</th>
                 <th scope="col">관리</th>
               </S.Tr>
             </S.Thead>
@@ -127,10 +133,10 @@ const TeamManagment = () => {
                   onClick={(e) => handleRowClick(item._id, e)}  // 행 클릭 시 모달 열기
                 >
                   <th scope="row" className="num">{item.applyId.name}</th>
-                  {/* <td>{item.field}</td> */}
-                  <td>{item.career}</td>
-                  {/* <td>{item.exportName.role}</td>
-                  <td>{item.exportName.upgradeRequestStatus}</td> */}
+                  <td>{item.upgradeId.field}</td>
+                  <td>{item.upgradeId.total}</td>
+                  <td>{item.applyId.role}</td>
+                  <td>{item.applyStatus}</td>
                   <td>
                     <S.RoleChangeButtonWrapper>
                       <button
