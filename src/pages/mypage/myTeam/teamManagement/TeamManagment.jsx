@@ -2,13 +2,21 @@ import React, { useEffect, useState } from 'react';
 import S from './styleTeamManagment';
 import { useNavigate } from 'react-router-dom';
 import ManagmentModal from './_component/ManagmentModal';
+import usePagination from '../../../../hooks/usePagination';
+import TeamManagmentDetail from './TeamManagmentDetail';
+import Paging from '../../_component/Paging';
 
-const TeamManagment = () => {
+const TeamManagment = ({ PAGINATION }) => {
   const navigate = useNavigate();
   const jwtToken = localStorage.getItem("jwtToken");
   const [ managment, setManagment ] = useState([]);
   const [selectedTeamManagment, setSelectedTeamManagment] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
+  const { page, currentList, setPage, totalPost } = usePagination({
+    pageRange: PAGINATION.pageRange,
+    list: managment || [],
+  });
 
   const getTeamManagment = async () => {
 
@@ -114,63 +122,21 @@ const TeamManagment = () => {
 
   return (
     <div>
-      <S.Container>
-          <S.Table>
-            <S.Thead>
-              <S.Tr>
-                <th scope="col">전문가 성함</th>
-                <th scope="col">전문분야</th>
-                <th scope="col">경력사항</th>
-                <th scope="col">회원 등급</th>
-                <th scope="col">승인상태</th>
-                <th scope="col">관리</th>
-              </S.Tr>
-            </S.Thead>
-            <S.Tbody>
-              {managment.map((item) => (
-                <S.RowTr
-                  key={item._id}
-                  onClick={(e) => handleRowClick(item._id, e)}  // 행 클릭 시 모달 열기
-                >
-                  <th scope="row" className="num">{item.applyId.name}</th>
-                  <td>{item.upgradeId.field}</td>
-                  <td>{item.upgradeId.total}</td>
-                  <td>{item.applyId.role}</td>
-                  <td>{item.applyStatus}</td>
-                  <td>
-                    <S.RoleChangeButtonWrapper>
-                      <button
-                        className='exportButton'
-                        onClick={(e) => {
-                          e.stopPropagation(); // 클릭 이벤트가 부모 요소로 전달되지 않도록 함
-                          handleTeamMatchingChange(item.applyId, item.teamId._id, '승인');
-                        }}
-                      >
-                        승인
-                      </button>
-                      <button
-                        className='rejectButton'
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleTeamMatchingChange(item.applyId._id, item.teamId._id, '거절');
-                        }}
-                      >
-                        거절
-                      </button>
-                    </S.RoleChangeButtonWrapper>
-                  </td>
-                </S.RowTr>
-              ))}
-            </S.Tbody>
-          </S.Table>
-        </S.Container>
-
-        {/* 모달창 */}
-        <ManagmentModal 
-          showModal={showModal}
-          selectedTeamManagment={selectedTeamManagment}
-          closeModal={closeModal}
-        />
+      <TeamManagmentDetail 
+        currentList={currentList}
+        handleRowClick={handleRowClick}
+        handleTeamMatchingChange={handleTeamMatchingChange}
+        showModal={showModal}
+        selectedTeamManagment={selectedTeamManagment}
+        closeModal={closeModal}
+      />
+      <Paging 
+        page={page}
+        setPage={setPage}
+        totalPost={totalPost}
+        btnRange={PAGINATION.btnRange}
+        pageRange={PAGINATION.pageRange}
+      />
     </div>
   );
 };

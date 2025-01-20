@@ -3,6 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import S from './styleTeamManagmentComponent';
 import TeamManagment from './TeamManagment';
 
+const PAGINATION = {
+  pageRange: 10,
+  btnRange: 3,
+};
+
 const TeamManagmentComponent = () => {
   const navigate = useNavigate();
 
@@ -20,7 +25,9 @@ const TeamManagmentComponent = () => {
         </S.Title>
 
         {/* 팀원 관리 */}
-        <TeamManagment />
+        <TeamManagment 
+          PAGINATION={PAGINATION}
+        />
         
       </S.Wapper>
     </S.Container>
