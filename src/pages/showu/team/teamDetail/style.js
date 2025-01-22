@@ -186,7 +186,7 @@ const S = {};
     }
   `
 
-  S.Heart = styled.div`
+  S.Heart = styled(({ liked, ...rest }) => <div {...rest} />)`
     cursor: pointer;
     width: 40px;
     height: 40px;
@@ -200,7 +200,7 @@ const S = {};
       width: 15px;
       height: 15px;
       & path{
-        /* color: #ffd400; */
+        color: ${(props) => (props.liked ? "#ffd400" : "#fff")}
       }
     }
   `

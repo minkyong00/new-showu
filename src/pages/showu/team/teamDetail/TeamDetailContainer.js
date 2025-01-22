@@ -8,32 +8,95 @@ const TeamDetailContainer = () => {
   const [ teams, setTeams ] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+  const [ liked, setLiked ] = useState(false);
+  const [ loading, setLoading ] = useState(false);
+  const jwtToken = localStorage.getItem("jwtToken"); 
+
 
   useEffect(() => {
-    const getTeamDetails = async () => {
+    const getLiked = async () => {
       try {
-        await fetch(`http://localhost:8000/showu/team/detail/${id}`, {
+        const response = await fetch(`http://localhost:8000/showu/team/like/${id}`, {
           method : "GET",
           headers : {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${jwtToken}`
           }
         })
-          .then((res) => res.json())
-          .then((res) => {
-            if(!res.teamDetailSuccess){
-              console.log(res.message)
-            }
-            setTeams(res.teamList)
-            console.log(res.message);
-            console.log(res.teamList);
-          })
+        .then((res) => res.json())
+        .then((res) => {
+          if(!res.ok){
+            console.log(res.message)
+          }
+          setLiked(res.liked)
+          console.log(res.message)
+        })
       } catch (error) {
-        console.log("team detail Error", error)
+        console.error("get team liked error", error)
       }
     }
 
-    getTeamDetails();
+    getLiked();
 
+  }, [id])
+
+  const toggleLike = async () => {
+    if (loading) return;
+    setLoading(true)
+
+    const newLiked = !liked;
+    setLiked(newLiked);
+
+    try {
+      const response = await fetch(`http://localhost:8000/showu/team/add-like/${id}`, {
+        method : "POST",
+        headers : {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${jwtToken}`
+        }
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        if(!res.ok){
+          console.log(res.message)
+        }
+        setLiked(res.liked)
+        console.log(res.message)
+        alert(res.message)
+        getTeamDetails();
+      })
+    } catch (error) {
+      console.error("좋아요 버튼 오류", error)
+    } finally {
+      setLoading(false)
+    }
+
+  }
+
+  const getTeamDetails = async () => {
+    try {
+      await fetch(`http://localhost:8000/showu/team/detail/${id}`, {
+        method : "GET",
+        headers : {
+          "Content-Type": "application/json",
+        }
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if(!res.teamDetailSuccess){
+            console.log(res.message)
+          }
+          setTeams(res.teamList)
+          console.log(res.message);
+          console.log(res.teamList);
+        })
+    } catch (error) {
+      console.log("team detail Error", error)
+    }
+  }
+
+  useEffect(() => {
+    getTeamDetails();
   }, [])
 
   // console.log("teams", teams.map(item => item.file))
@@ -58,6 +121,7 @@ const TeamDetailContainer = () => {
           </S.Wrapper>
           <S.SectoinWarpper>
             <S.RightSection>
+
             {/* 팀 매칭 제목, 찜, 지원 버튼 */}
               <S.Title>
                 <p className='title'>{item.teamTitle}</p>
@@ -73,9 +137,11 @@ const TeamDetailContainer = () => {
                       </a>
                     </S.FileDown>
                     )}
-                  <S.Heart>
+
+                  <S.Heart onClick={toggleLike} liked={liked}>
                     <FontAwesomeIcon icon={faHeart} className='heart' />
                   </S.Heart>
+
                   <S.Apply
                     onClick={() => navigate(`/showu/team/apply/${item._id}`)}
                   >
