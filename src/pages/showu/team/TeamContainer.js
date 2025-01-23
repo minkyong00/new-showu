@@ -81,6 +81,7 @@ const TeamContainer = () => {
               </S.CategoryButton>
             ))}
           </S.CategoryButtonWrapper>
+          
           <TeamComponent 
             navigate={navigate}
             handleCategoryChange={handleCategoryChange}

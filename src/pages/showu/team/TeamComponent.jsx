@@ -5,6 +5,22 @@ import { faCalendarDays, faChevronDown, faThumbtack } from '@fortawesome/free-so
 import Paging from '../../mypage/_component/Paging';
 
 const TeamComponent = ({ navigate, filteredProducts, page, setPage, totalPost, PAGINATION }) => {
+
+  //마감 공고일 d-day 함수
+  function calculateDDay(deadLine) {
+    const today = new Date();
+    const endDate = new Date(deadLine);
+    const diffTime = endDate - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+    if(diffDays > 0){
+      return `D-${diffDays}`
+    } else if (diffDays === 0){
+      return "D-Day"
+    } else {
+      return "마감된 공고"
+    }
+  }
   
   return (
       <div>
@@ -31,14 +47,22 @@ const TeamComponent = ({ navigate, filteredProducts, page, setPage, totalPost, P
                   <li className='lessonDetail'
                     onClick={() => navigate(`/showu/team/detail/${team._id}`)}
                   >{team.teamIntro}</li>
+
+                  <div>
+                    {/* <span>{team.deadLine}</span> */}
+                    <p>{calculateDDay(team.deadLine)}</p>
+                  </div>
+
                   <S.Career>
                     <FontAwesomeIcon icon={faThumbtack} />
                     <li className='lessonName'>{team.careerHistory}</li>
                   </S.Career>
+
                 </S.LessonExplantion>
+
                 <S.Period>
                   <FontAwesomeIcon icon={faCalendarDays} />
-                  <li>{team.activityPeriodStart}</li>
+                  <li>{team.deadLine}</li>
                 </S.Period>
               </ul>
             </S.LessonBox>

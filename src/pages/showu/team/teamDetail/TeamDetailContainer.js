@@ -102,6 +102,11 @@ const TeamDetailContainer = () => {
   // console.log("teams", teams.map(item => item.file))
   console.log("teams", teams)
 
+  // 모집 인원 확인 함수
+  const isRecruitmentClosed = (recruit, currentMemberCount) => {
+    return currentMemberCount >= recruit;
+  };
+
   return (
     <div>
       { teams && teams.map((item, i) => (
@@ -142,11 +147,19 @@ const TeamDetailContainer = () => {
                     <FontAwesomeIcon icon={faHeart} className='heart' />
                   </S.Heart>
 
-                  <S.Apply
-                    onClick={() => navigate(`/showu/team/apply/${item._id}`)}
-                  >
-                    <p>지원</p>
-                  </S.Apply>
+                  {/* 모집 인원 다 차면 지원 버튼 마감으로 변경 */}
+                  {isRecruitmentClosed(item.recruit, item.currentMemberCount) ? (
+                    <S.Apply disabled>
+                      <p>마감</p>
+                    </S.Apply>
+                  ) : (
+                    <S.Apply
+                      onClick={() => navigate(`/showu/team/apply/${item._id}`)}
+                    >
+                      <p>지원</p>
+                    </S.Apply>
+                  )}
+
                 </S.AllButton>
               </S.Title>
 
