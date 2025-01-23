@@ -428,7 +428,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/showu/team/apply/:id",
-        element: <TeamApplyContainer />, //team 지원 페이지
+        element: <MyTeamApplyContainer />, //team 지원 페이지
       },
       {
         path: "/vod",
