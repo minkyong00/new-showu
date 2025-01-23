@@ -21,13 +21,13 @@ const MypageContainer = () => {
             </Link>
             <hr />
         </S.Ul>
-        <S.Ul>
+        {/* <S.Ul>
             <li>MY CLASS</li>
             <Link to={"/my-class/created"}>
               <li>레슨</li>
             </Link>
             <hr />
-        </S.Ul>
+        </S.Ul> */}
         <S.Ul>
             <li>예약 정보</li>
           <Link to={"/my-res/space"}>

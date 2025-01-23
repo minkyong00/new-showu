@@ -130,7 +130,7 @@ const Layout = () => {
                 menuLabel="showU"
                 to="/showu"
                 dropdownLinks={[
-                  { to: "/showu/lesson", label: "레슨" },
+                  // { to: "/showu/lesson", label: "레슨" },
                   { to: "/showu/team", label: "팀매칭" },
                 ]}
               />
