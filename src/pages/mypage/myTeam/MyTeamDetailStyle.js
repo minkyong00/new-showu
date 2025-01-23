@@ -243,4 +243,14 @@ const S = {};
     top: 125px;
   `
 
+  S.UpdateAndDeleteButton = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    & div {
+      cursor: pointer;
+    }
+  `
+
 export default S;

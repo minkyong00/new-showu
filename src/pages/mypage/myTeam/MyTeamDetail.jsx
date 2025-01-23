@@ -3,7 +3,7 @@ import S from './MyTeamDetailStyle';
 import { Link, useNavigate } from 'react-router-dom';
 import Paging from '../_component/Paging';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp, faCalendarDays, faThumbtack } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faCalendarDays, faPen, faThumbtack, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 const MyTeamDetail = ({ page, currentList, setPage, totalPost, PAGINATION }) => {
@@ -54,44 +54,60 @@ const MyTeamDetail = ({ page, currentList, setPage, totalPost, PAGINATION }) => 
       
           { currentList && currentList.map((team, i) => (
             <S.LessonBox key={i}>
-            <ul>
-              <S.UserInfo>  
-                <img src={`http://localhost:8000${team.teamProfile}`} alt="team profile"></img>
-                <div>
-                  <li className='teamName'>{team.teamName}</li>
+
+              <S.UpdateAndDeleteButton >
+                <div 
+                  className='deleteButton'
+                  onClick={() => navigate("/showu/team/up-date")}
+                >
+                  <FontAwesomeIcon icon={faPen} className='pen' />
+                </div>
+                <div 
+                  className='updateButton'
+                  // onClick={() => navigate("")}
+                >
+                  <FontAwesomeIcon icon={faXmark} className='xmark' />
+                </div>
+              </S.UpdateAndDeleteButton>
+
+              <ul>
+                <S.UserInfo>  
+                  <img src={`http://localhost:8000${team.teamProfile}`} alt="team profile"></img>
+                  <div>
+                    <li className='teamName'>{team.teamName}</li>
+                    <li className='category'>{team.category}</li>
+                  </div>
+                </S.UserInfo>
+
+                <S.Hr />
+
+                <S.category>
+                  {/* <li className='total'>{team.userName.role}</li> */}
                   <li className='category'>{team.category}</li>
-                </div>
-              </S.UserInfo>
+                </S.category>
 
-              <S.Hr />
+                <S.LessonExplantion>
+                  <li className='lessonDetail'
+                    onClick={() => navigate(`/showu/team/detail/${team._id}`)}
+                  >{team.teamIntro}</li>
 
-              <S.category>
-                {/* <li className='total'>{team.userName.role}</li> */}
-                <li className='category'>{team.category}</li>
-              </S.category>
+                  <div>
+                    {/* <span>{team.deadLine}</span> */}
+                    <p>{calculateDDay(team.deadLine)}</p>
+                  </div>
 
-              <S.LessonExplantion>
-                <li className='lessonDetail'
-                  onClick={() => navigate(`/showu/team/detail/${team._id}`)}
-                >{team.teamIntro}</li>
+                  {/* <S.Career>
+                    <FontAwesomeIcon icon={faThumbtack} />
+                    <li className='lessonName'>{team.careerHistory}</li>
+                  </S.Career> */}
 
-                <div>
-                  {/* <span>{team.deadLine}</span> */}
-                  <p>{calculateDDay(team.deadLine)}</p>
-                </div>
+                </S.LessonExplantion>
 
-                <S.Career>
-                  <FontAwesomeIcon icon={faThumbtack} />
-                  <li className='lessonName'>{team.careerHistory}</li>
-                </S.Career>
-
-              </S.LessonExplantion>
-
-              <S.Period>
-                <FontAwesomeIcon icon={faCalendarDays} />
-                <li>{team.deadLine}</li>
-              </S.Period>
-            </ul>
+                <S.Period>
+                  <FontAwesomeIcon icon={faCalendarDays} />
+                  <li>{team.deadLine}</li>
+                </S.Period>
+              </ul>
           </S.LessonBox>
           ))}
 
@@ -102,6 +118,7 @@ const MyTeamDetail = ({ page, currentList, setPage, totalPost, PAGINATION }) => 
             btnRange={PAGINATION.btnRange}
             pageRange={PAGINATION.pageRange}
           />
+
         </S.Wrapper>
       </S.Container>
       <S.ScrollTop onClick={handleScrollTop}>

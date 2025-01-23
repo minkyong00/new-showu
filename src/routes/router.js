@@ -106,6 +106,8 @@ import TeamDetailContainer from '../pages/showu/team/teamDetail/TeamDetailContai
 import TeamCreatedContainer from '../pages/showu/team/teamCreate/TeamCreatedContainer';
 import TeamApplyContainer from '../pages/showu/team/teamApply/TeamApplyContainer';
 import TeamManagementContainer from '../pages/mypage/myTeam/teamManagement/TeamManagementContainer';
+import TeamUpdateContainer from '../pages/mypage/myTeam/teamUpdate/TeamUpdateContainer';
+import MyTeamApplyContainer from '../pages/mypage/myTeam/myTeamApply/MyTeamApplyContainer';
 
 const router = createBrowserRouter([
   {
@@ -309,6 +311,10 @@ const router = createBrowserRouter([
         element: <TeamManagementContainer />, //팀원 관리
       },
       {
+        path: "/my-team/apply",
+        element: <MyTeamApplyContainer />, // 지원한 팀 관리
+      },
+      {
         path: "/my-vod",
         element: <MyVodContainer />, //VOD 정보
       },
@@ -415,6 +421,10 @@ const router = createBrowserRouter([
       {
         path: "/showu/team/create",
         element: <TeamCreatedContainer />, //team 개설 페이지
+      },
+      {
+        path: "/showu/team/up-date",
+        element: <TeamUpdateContainer />, // team 수정 페이지
       },
       {
         path: "/showu/team/apply/:id",

@@ -16,8 +16,13 @@ const MypageContainer = () => {
         </S.Title>
         <S.Ul>
             <li>MY TEAM</li>
+            {/* 개설한 팀 관리 */}
             <Link to={"/my-team"}>
-              <li>팀 매칭</li>
+              <li>개설 팀 매칭</li> 
+            </Link>
+            {/* 지원한 팀 관리 */}
+            <Link to={"/my-team/apply"}>
+              <li>지원 팀 매칭</li>
             </Link>
             <hr />
         </S.Ul>
